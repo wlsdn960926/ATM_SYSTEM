@@ -18,10 +18,10 @@ public class Signup : MonoBehaviour
 
     private void Start()
     {
-        registerButton.onClick.AddListener(RegisterUser);
+        
     }
 
-    private void RegisterUser()
+    public void RegisterUser()
     {
         string userid = IDInput.text;    // 입력된 사용자명
         string username = NameInput.text;
@@ -44,7 +44,7 @@ public class Signup : MonoBehaviour
         }
 
         // 비밀번호와 비밀번호 확인이 같은지 확인
-        if (passwordInput != pwconfirmInput)
+        if (password != pwconfirm)
         {
             IncorrectPanel.SetActive(true);
             Debug.LogWarning("비밀번호가 일치하지 않습니다.");
