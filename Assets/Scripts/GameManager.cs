@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public Text Cashtxt;
     public Text BalanceTxt;
+    public GameObject NotEnoughCashPanel;
 
     // 초기 자금
     private int InitialCash = 100000;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     private int Balance;
 
     // 직접입력 금액
-    [SerializeField]private InputField customAmountInput;
+    [SerializeField] private InputField customAmountInput;
 
 
 
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        
+
     }
     void Start()
     {
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void DepositMenu()
     {
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
     public void UpdateText()
     {
         // 통화 단위 적용
-        Cashtxt.text =  Cash.ToString("N0"); 
+        Cashtxt.text = Cash.ToString("N0");
         BalanceTxt.text = "Balance  " + Balance.ToString("N0");
     }
 
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough cash!");
+            NotEnoughCashPanel.SetActive(true);
         }
 
     }
@@ -112,7 +113,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough Balance!");
+            NotEnoughCashPanel.SetActive(true);
         }
     }
     // 버튼에 연결된 함수들
@@ -161,7 +162,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough cash!");
+            NotEnoughCashPanel.SetActive(true);
         }
     }
     // 직접입력 출금
@@ -178,7 +179,13 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough Balance!");
+            NotEnoughCashPanel.SetActive(true);
         }
+    }
+
+    //잔액부족 판넬 닫기
+    public void CloseNotEnoughCashPanel()
+    {
+        NotEnoughCashPanel.SetActive(false);
     }
 }
